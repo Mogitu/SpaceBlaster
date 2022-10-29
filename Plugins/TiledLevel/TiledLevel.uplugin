@@ -1,0 +1,42 @@
+{
+	"FileVersion": 3,
+	"Version": 2,
+	"VersionName": "2.1.2",
+	"FriendlyName": "TiledLevel",
+	"Description": "Make 3D level design as easy as 2D tiled map",
+	"Category": "Editor",
+	"CreatedBy": "Puf Studio",
+	"CreatedByURL": "",
+	"DocsURL": "https://tiledlevel.tk/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/0cfbd8b4dcb34163a72d0f1979df0e60",
+	"SupportURL": "https://discord.gg/2MPht3cZk3",
+	"EngineVersion": "5.0.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "TiledLevel",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux"
+			]
+		},
+		{
+			"Name": "TiledLevelRuntime",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ProceduralMeshComponent",
+			"Enabled": true
+		}
+	]
+}
