@@ -44,7 +44,7 @@ void ATiledLevelSelectHelper::SyncToSelection(FVector InTileSize, const TArray<F
 	FIntVector MinSelect = {1024, 1024, 1024};
 	FIntVector MaxSelect = {0, 0, 0};
 
-	for (const auto Tile : *TileStorage)
+	for (auto Tile : *TileStorage)
 	{
 		if (Tile.GridPosition.X < MinSelect.X)
 			MinSelect.X = Tile.GridPosition.X;
@@ -60,7 +60,7 @@ void ATiledLevelSelectHelper::SyncToSelection(FVector InTileSize, const TArray<F
 			MaxSelect.Z = Tile.GridPosition.Z + Tile.Extent.Z - 1;
 	}
 
-	for (const auto Edge : *EdgeStorage)
+	for (auto Edge : *EdgeStorage)
 	{
 		if (Edge.GetEdgePosition().X < MinSelect.X)
 			 MinSelect.X = Edge.GetEdgePosition().X;
@@ -85,7 +85,7 @@ void ATiledLevelSelectHelper::SyncToSelection(FVector InTileSize, const TArray<F
 		if (Edge.GetEdgePosition().Z > MaxSelect.Z)
 			MaxSelect.Z = Edge.GetEdgePosition().Z;
 	}
-	for (const auto Point : *PointStorage)
+	for (auto Point : *PointStorage)
 	{
 		if (Point.GridPosition.X < MinSelect.X)
 			MinSelect.X = Point.GridPosition.X;

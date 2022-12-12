@@ -142,28 +142,28 @@ void FTiledItemSetEditor::RegisterTabSpawners(const TSharedRef<FTabManager>& InT
 	            .SetDisplayName(LOCTEXT("PaletteTab_Description", "Item Palette"))
 	            .SetTooltipText(LOCTEXT("PaletteTab_Tooltip", "Display the Item Palette"))
 	            .SetGroup(WorkspaceMenuCategoryRef)
-	            .SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.PlacementBrowser"));
+	            .SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.PlacementBrowser"));
 	InTabManager->RegisterTabSpawner(FTiledItemSetEditorTabs::PreviewID,
 	                                 FOnSpawnTab::CreateSP(this, &FTiledItemSetEditor::SpawnTab_Preview))
 	            .SetDisplayName(LOCTEXT("PreviewTab_Description", "Preview Viewport"))
 	            .SetTooltipText(LOCTEXT("PreviewTab_Tooltip", "Preview Item Placement"))
 	            .SetGroup(WorkspaceMenuCategoryRef)
-	            .SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Viewports"));
+	            .SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Viewports"));
 	InTabManager->RegisterTabSpawner(FTiledItemSetEditorTabs::DetailsID,
 	                                 FOnSpawnTab::CreateSP(this, &FTiledItemSetEditor::SpawnTab_Details))
 	            .SetDisplayName(LOCTEXT("DetailTab_Description", "Item Detail"))
 	            .SetGroup(WorkspaceMenuCategoryRef)
-	            .SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+	            .SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 	InTabManager->RegisterTabSpawner(FTiledItemSetEditorTabs::ContentBrowserID,
 	                                 FOnSpawnTab::CreateSP(this, &FTiledItemSetEditor::SpawnTab_ContentBrowser))
 	            .SetDisplayName(LOCTEXT("ContentBrowserTab_Description", "Content Browser"))
 	            .SetGroup(WorkspaceMenuCategoryRef)
-	            .SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.ContentBrowser"));
+	            .SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.ContentBrowser"));
 	InTabManager->RegisterTabSpawner(FTiledItemSetEditorTabs::PreviewSettingsID,
 	                                 FOnSpawnTab::CreateSP(this, &FTiledItemSetEditor::SpawnTab_PreviewSettings))
 	            .SetDisplayName(LOCTEXT("PropertiesTabLabel", "Preview Settings"))
 	            .SetGroup(WorkspaceMenuCategory.ToSharedRef())
-	            .SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+	            .SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 }
 
 void FTiledItemSetEditor::UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager)
@@ -777,7 +777,7 @@ void FTiledItemSetEditor::UnfixActiveItem(FIntPoint PreviewPosition)
 		UKismetGuidLibrary::Parse_StringToGuid(Actor->Tags[0].ToString(), Uid, ParseResult);
 		FVector2D V2D;
 		V2D.InitFromString(Actor->Tags[1].ToString());
-		return (ActiveItem->ItemID == Uid && FVector2D(PreviewPosition) == V2D);
+		return (ActiveItem->ItemID == Uid && FVector2D(PreviewPosition.X, PreviewPosition.Y) == V2D);
 	});
 	if (IndexToRemove != INDEX_NONE)
 	{

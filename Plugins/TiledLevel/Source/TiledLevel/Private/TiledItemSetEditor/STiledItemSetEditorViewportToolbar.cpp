@@ -20,7 +20,7 @@ void STiledItemSetEditorViewportToolbar::Construct(const FArguments& InArgs)
 	
 	// // camera speed control menu
 	FToolBarBuilder CameraSpeedToolbar(EditorViewport.Pin()->GetCommandList(), FMultiBoxCustomization::None, MakeShareable(new FExtender()));
-	CameraSpeedToolbar.SetStyle(&FEditorStyle::Get(), "ViewportMenu");
+	CameraSpeedToolbar.SetStyle(&FAppStyle::Get(), "ViewportMenu");
 	CameraSpeedToolbar.SetLabelVisibility(EVisibility::Collapsed);
 	CameraSpeedToolbar.SetIsFocusable(false);
 	CameraSpeedToolbar.BeginSection("CameraSpeed");
@@ -43,9 +43,9 @@ void STiledItemSetEditorViewportToolbar::Construct(const FArguments& InArgs)
 	ChildSlot
 	[
 		SNew(SBorder)
-		.BorderImage(FEditorStyle::GetBrush("NoBorder"))
+		.BorderImage(FAppStyle::GetBrush("NoBorder"))
 		.ColorAndOpacity(this, &SViewportToolBar::GetColorAndOpacity)
-		.ForegroundColor(FEditorStyle::GetSlateColor("DefaultForeground"))
+		.ForegroundColor(FAppStyle::GetSlateColor("DefaultForeground"))
 		[
 			SNew(SHorizontalBox)
 			// +SHorizontalBox::Slot() // TODO: for future expansion if needed?
@@ -106,7 +106,7 @@ FText STiledItemSetEditorViewportToolbar::GetCameraSpeedLabel() const
 TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::FillCameraSpeedMenu()
 {
 	TSharedRef<SWidget> ReturnWidget = SNew(SBorder)
-	.BorderImage(FEditorStyle::GetBrush(TEXT("Menu.Background")))
+	.BorderImage(FAppStyle::GetBrush(TEXT("Menu.Background")))
 	[
 		SNew( SVerticalBox )
 		+SVerticalBox::Slot()
@@ -116,7 +116,7 @@ TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::FillCameraSpeedMenu()
 		[
 			SNew( STextBlock )
 			.Text( LOCTEXT("MouseSettingsCamSpeed", "Camera Speed")  )
-			.Font( FEditorStyle::GetFontStyle( TEXT( "MenuItem.Font" ) ) )
+			.Font( FAppStyle::GetFontStyle( TEXT( "MenuItem.Font" ) ) )
 		]
 		+SVerticalBox::Slot()
 		.AutoHeight()
@@ -137,7 +137,7 @@ TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::FillCameraSpeedMenu()
 			[
 				SNew( STextBlock )
 				.Text(this, &STiledItemSetEditorViewportToolbar::GetCameraSpeedLabel )
-				.Font( FEditorStyle::GetFontStyle( TEXT( "MenuItem.Font" ) ) )
+				.Font( FAppStyle::GetFontStyle( TEXT( "MenuItem.Font" ) ) )
 			]
 		] // Camera Speed Scalar
 		+ SVerticalBox::Slot()
@@ -147,7 +147,7 @@ TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::FillCameraSpeedMenu()
 			[
 				SNew(STextBlock)
 				.Text(LOCTEXT("MouseSettingsCamSpeedScalar", "Camera Speed Scalar"))
-				.Font(FEditorStyle::GetFontStyle(TEXT("MenuItem.Font")))
+				.Font(FAppStyle::GetFontStyle(TEXT("MenuItem.Font")))
 			]
 		+ SVerticalBox::Slot()
 			.AutoHeight()
@@ -258,7 +258,7 @@ const FSlateBrush* STiledItemSetEditorViewportToolbar::GetCameraMenuLabelIcon() 
 	{
 		return GetCameraMenuLabelIconFromViewportType( EditorViewport.Pin()->GetViewportClient()->GetViewportType() );
 	}
-	return FEditorStyle::GetBrush(NAME_None);
+	return FAppStyle::GetBrush(NAME_None);
 }
 
 TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::GenerateCameraMenu()
@@ -329,7 +329,7 @@ const FSlateBrush* STiledItemSetEditorViewportToolbar::GetViewMenuLabelIcon() co
 		default: ;
 		}
 	}
-	return FEditorStyle::GetBrush(Icon);
+	return FAppStyle::GetBrush(Icon);
 }
 
 TSharedRef<SWidget> STiledItemSetEditorViewportToolbar::GenerateViewMenu()

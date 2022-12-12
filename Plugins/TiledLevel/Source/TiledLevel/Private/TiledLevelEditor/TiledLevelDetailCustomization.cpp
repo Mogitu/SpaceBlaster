@@ -71,7 +71,7 @@ void FTiledLevelDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Deta
 			  .AutoWidth()
 			[
 				SNew(STextBlock)
-				.Font(FEditorStyle::GetFontStyle("TinyText"))
+				.Font(FAppStyle::GetFontStyle("TinyText"))
 				.Text_Lambda([this]
 				                {
 					                return IsInstanced()
@@ -225,7 +225,7 @@ void FTiledLevelDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Deta
 				  .AutoWidth()
 				[
 					SNew(STextBlock)
-					.Font(FEditorStyle::GetFontStyle("TinyText"))
+					.Font(FAppStyle::GetFontStyle("TinyText"))
 					.Text(this, &FTiledLevelDetailCustomization::GetFloorSettingsHeadingText)
 					.ToolTipText(LOCTEXT("FloorSettingsTooltip", "Properties specific to the currently selected Floor"))
 				]

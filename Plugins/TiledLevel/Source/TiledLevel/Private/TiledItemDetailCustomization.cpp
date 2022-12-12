@@ -78,7 +78,7 @@ void FTiledItemDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Detai
 	.FillWidth(1.0)
 	[
 		SNew(SCheckBox)
-		.Style(FEditorStyle::Get(), "RadioButton")
+		.Style(FAppStyle::Get(), "RadioButton")
 		.Visibility(this, &FTiledItemDetailCustomization::GetPivotOptionVisibility, EPivotPosition::Bottom)
 		.IsChecked(this, &FTiledItemDetailCustomization::GetPivotOptionCheckState, EPivotPosition::Bottom)
 		.OnCheckStateChanged(this, &FTiledItemDetailCustomization::OnPivotOptionCheckStateChanged,EPivotPosition::Bottom)
@@ -92,7 +92,7 @@ void FTiledItemDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Detai
 	.FillWidth(1.0)
 	[
 		SNew(SCheckBox)
-		.Style(FEditorStyle::Get(), "RadioButton")
+		.Style(FAppStyle::Get(), "RadioButton")
 		.Visibility(this, &FTiledItemDetailCustomization::GetPivotOptionVisibility, EPivotPosition::Center)
 		.IsChecked(this, &FTiledItemDetailCustomization::GetPivotOptionCheckState, EPivotPosition::Center)
 		.OnCheckStateChanged(this, &FTiledItemDetailCustomization::OnPivotOptionCheckStateChanged,EPivotPosition::Center)
@@ -106,7 +106,7 @@ void FTiledItemDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Detai
 	.FillWidth(1.0)
 	[
 		SNew(SCheckBox)
-		.Style(FEditorStyle::Get(), "RadioButton")
+		.Style(FAppStyle::Get(), "RadioButton")
 		.Visibility(this, &FTiledItemDetailCustomization::GetPivotOptionVisibility, EPivotPosition::Corner)
 		.IsChecked(this, &FTiledItemDetailCustomization::GetPivotOptionCheckState, EPivotPosition::Corner)
 		.OnCheckStateChanged(this, &FTiledItemDetailCustomization::OnPivotOptionCheckStateChanged,EPivotPosition::Corner)
@@ -120,7 +120,7 @@ void FTiledItemDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Detai
 	.FillWidth(1.0)
 	[
 		SNew(SCheckBox)
-		.Style(FEditorStyle::Get(), "RadioButton")
+		.Style(FAppStyle::Get(), "RadioButton")
 		.Visibility(this, &FTiledItemDetailCustomization::GetPivotOptionVisibility, EPivotPosition::Side)
 		.IsChecked(this, &FTiledItemDetailCustomization::GetPivotOptionCheckState, EPivotPosition::Side)
 		.OnCheckStateChanged(this, &FTiledItemDetailCustomization::OnPivotOptionCheckStateChanged,EPivotPosition::Side)
@@ -134,7 +134,7 @@ void FTiledItemDetailCustomization::CustomizeDetails(IDetailLayoutBuilder& Detai
 	.FillWidth(1.0)
 	[
 		SNew(SCheckBox)
-		.Style(FEditorStyle::Get(), "RadioButton")
+		.Style(FAppStyle::Get(), "RadioButton")
 		.Visibility(this, &FTiledItemDetailCustomization::GetPivotOptionVisibility, EPivotPosition::Fit)
 		.IsChecked(this, &FTiledItemDetailCustomization::GetPivotOptionCheckState, EPivotPosition::Fit)
 		.OnCheckStateChanged(this, &FTiledItemDetailCustomization::OnPivotOptionCheckStateChanged,EPivotPosition::Fit)

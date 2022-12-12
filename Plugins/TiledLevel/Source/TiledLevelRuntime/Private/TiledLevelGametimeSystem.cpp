@@ -516,7 +516,7 @@ bool UTiledLevelGametimeSystem::RemoveItem_FromHit(const FHitResult& HitResult)
 				  break;
 			 }
 		}
-		if (!HitItem) return nullptr;
+		if (!HitItem) return false;
 		if (!CanRemoveItem(HitItem) || IsRemoveRestricted(HitItem, HitResult.ImpactPoint))
 		{
 			OnItemFailToRemove.Broadcast(HitItem, BuildPosition);
@@ -734,9 +734,13 @@ void UTiledLevelGametimeSystem::EraseItem()
 		 {
 		 	  bool Con;
 		 	  if (EraserType == EPlacedType::Any)
-		 	  	  Con = FTiledLevelUtility::IsEdgeInsideTile(Placement.Edge, FIntVector(Placement.GetItem()->Extent), CurrentTilePosition, EraserExtent);
+		 	  {
+			 	  Con = FTiledLevelUtility::IsEdgeInsideTile(Placement.Edge, FIntVector(Placement.GetItem()->Extent), CurrentTilePosition, EraserExtent);
+		 	  }
 		      else
+		      {
 		      	  Con = FTiledLevelUtility::IsEdgeOverlapping(CurrentEdge, FVector(EraserExtent), Placement.Edge, Placement.GetItem()->Extent);
+		      }
 			  if (Con)
 			  {
 				  EdgesToDelete.Add(Placement);

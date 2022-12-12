@@ -92,22 +92,22 @@ void FTiledLevelEditor::RegisterTabSpawners(const TSharedRef<FTabManager>& InTab
  	InTabManager->RegisterTabSpawner(FTiledLevelEditorTabs::ToolboxID, FOnSpawnTab::CreateSP(this, &FTiledLevelEditor::SpawnTab_Toolbox))
  		.SetDisplayName(LOCTEXT("ToolboxTabLabel", "Toolbox"))
  		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
- 		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Modes"));
+ 		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Modes"));
 	
  	InTabManager->RegisterTabSpawner(FTiledLevelEditorTabs::ViewportID, FOnSpawnTab::CreateSP(this, &FTiledLevelEditor::SpawnTab_Viewport))
  		.SetDisplayName(LOCTEXT("ViewportTabLabel", "Viewport"))
  		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
- 		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Viewports"));
+ 		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Viewports"));
 	
  	InTabManager->RegisterTabSpawner(FTiledLevelEditorTabs::DetailsID, FOnSpawnTab::CreateSP(this, &FTiledLevelEditor::SpawnTab_Details))
  		.SetDisplayName(LOCTEXT("PropertiesTabLabel", "Details"))
  		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
- 		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+ 		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 	
  	InTabManager->RegisterTabSpawner(FTiledLevelEditorTabs::PreviewSettingsID, FOnSpawnTab::CreateSP(this, &FTiledLevelEditor::SpawnTab_PreviewSettings))
  		.SetDisplayName(LOCTEXT("PropertiesTabLabel", "Preview Settings"))
  		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
- 		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+ 		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 	
 }
 
@@ -182,7 +182,7 @@ void FTiledLevelEditor::InitTileLevelEditor(const EToolkitMode::Type Mode,
 
 	ViewportPtr = SNew(STiledLevelEditorViewport, SharedThis(this));
 	ToolboxPtr = SNew(SBorder)
-		.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+		.BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
         .Padding(0.f);
 	
 	const TSharedRef<FTabManager::FLayout> StandaloneDefaultLayout = FTabManager::NewLayout("Standalone_TiledLevelEditor_Dev003")

@@ -286,7 +286,7 @@ private:
 	bool IsEraserMode = false;
 	FIntVector EraserExtent;
 
-	FTimerHandle ClientInitTimer;
+	// struct FTimerHandle ClientInitTimer;
 	// UFUNCTION()
 	// void InitClient();
 };

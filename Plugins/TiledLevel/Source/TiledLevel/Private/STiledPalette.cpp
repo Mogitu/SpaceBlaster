@@ -10,7 +10,7 @@
 #include "STiledItemPicker.h"
 #include "TiledLevelEditor/TiledLevelEdMode.h"
 #include "Engine/StaticMeshActor.h"
-#include "Dialogs/CustomDialog.h"
+#include "Dialogs/Dialogs.h"
 #include "AssetSelection.h"
 #include "IStructureDetailsView.h"
 #include "SlateOptMacros.h"
@@ -107,7 +107,7 @@ public:
 		this->ChildSlot
 		[
 			SNew(SBorder)
-				.BorderImage(FEditorStyle::GetBrush("WhiteBrush"))
+				.BorderImage(FAppStyle::GetBrush("WhiteBrush"))
 				.BorderBackgroundColor(this, &STiledItemDragDropHandler::GetBackgroundColor)
 				.Padding(FMargin(30))
 			[
@@ -189,7 +189,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 	CustomDataDetailsWidget->GetOnFinishedChangingPropertiesDelegate().AddRaw(this, &STiledPalette::OnCustomDataEdited);
 
 	SAssignNew(FillDetailWidget, SBorder)
-	.BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+	.BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
     .Padding(3.f);
 
 	SAssignNew(FillDetailTreeWidget, STreeView<TSharedPtr<FTiledItemViewData>>)
@@ -346,7 +346,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 	              .HAlign(HAlign_Fill)
 	[
 		SNew(SBorder)
-		.BorderImage(FEditorStyle::GetBrush("DetailsView.CategoryTop"))
+		.BorderImage(FAppStyle::GetBrush("DetailsView.CategoryTop"))
 		.Padding(FMargin(6.f, 2.f))
 		.BorderBackgroundColor(FLinearColor(.6f, .6f, .6f, 1.0f))
 		[
@@ -378,12 +378,12 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 				SNew(SComboButton)
 				.ContentPadding(0)
 				.ForegroundColor(FSlateColor::UseForeground())
-				.ButtonStyle(FEditorStyle::Get(), "ToggleButton")
+				.ButtonStyle(FAppStyle::Get(), "ToggleButton")
 				.OnGetMenuContent(this, &STiledPalette::GetViewOptionMenuContent)
 				.ButtonContent()
 				[
 					SNew(SImage)
-					.Image(FEditorStyle::GetBrush("GenericViewButton"))
+					.Image(FAppStyle::GetBrush("GenericViewButton"))
 				]
 			]
 			+ SHorizontalBox::Slot()
@@ -396,12 +396,12 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 				                     "Add special items for particular purpose! Only restriction rule item is provided for now."))
 				.ContentPadding(0)
 				.ForegroundColor(FSlateColor::UseForeground())
-				.ButtonStyle(FEditorStyle::Get(), "ToggleButton")
+				.ButtonStyle(FAppStyle::Get(), "ToggleButton")
 				.OnGetMenuContent(this, &STiledPalette::GetAddSpecialItemsMenuContent)
 				.ButtonContent()
 				[
 					SNew(SImage)
-					.Image(FEditorStyle::GetBrush("Plus"))
+					.Image(FAppStyle::GetBrush("Plus"))
 				]
 			]
 		]
@@ -414,7 +414,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 		[
 			SNew(SSplitter)
 			.Orientation(Orient_Vertical)
-			.Style(FEditorStyle::Get(), "FoliageEditMode.Splitter")
+			.Style(FAppStyle::Get(), "FoliageEditMode.Splitter")
 
 			+ SSplitter::Slot()
 			.Value(0.6f)
@@ -523,7 +523,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 		[
 			SNew(SSplitter)
 			.Orientation(Orient_Vertical)
-			.Style(FEditorStyle::Get(), "FoliageEditMode.Splitter")
+			.Style(FAppStyle::Get(), "FoliageEditMode.Splitter")
 
 			+ SSplitter::Slot()
 			.Value(0.6f)
@@ -554,7 +554,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 						SNew(SButton)
 						.ToolTipText(this, &STiledPalette::GetShowHideDetailsTooltipText)
 						.ForegroundColor(FSlateColor::UseForeground())
-						.ButtonStyle(FEditorStyle::Get(), "ToggleButton")
+						.ButtonStyle(FAppStyle::Get(), "ToggleButton")
 						.OnClicked(this, &STiledPalette::OnShowHideDetailsClicked)
 						.ContentPadding(FMargin(2.f))
 						.Content()
@@ -568,7 +568,7 @@ void STiledPalette::Construct(const FArguments& InArgs, TSharedPtr<FTiledItemSet
 							  .VAlign(VAlign_Center)
 							[
 								SNew(SImage)
-								.Image(FEditorStyle::GetBrush("LevelEditor.Tabs.Details"))
+								.Image(FAppStyle::GetBrush("LevelEditor.Tabs.Details"))
 							]
 
 							// Arrow
@@ -1160,7 +1160,7 @@ FReply STiledPalette::OnShowHideDetailsClicked() const
 const FSlateBrush* STiledPalette::GetShowHideDetailsImage() const
 {
 	const bool bDetailsCurrentlyVisible = DetailsWidget->GetVisibility() != EVisibility::Collapsed;
-	return FEditorStyle::Get().GetBrush(bDetailsCurrentlyVisible ? "Symbols.DoubleDownArrow" : "Symbols.DoubleUpArrow");
+	return FAppStyle::Get().GetBrush(bDetailsCurrentlyVisible ? "Symbols.DoubleDownArrow" : "Symbols.DoubleUpArrow");
 }
 
 void STiledPalette::RemoveTiledItem()
@@ -1516,17 +1516,9 @@ FReply STiledPalette::HandleItemDropped(const FGeometry& DropZoneGeometry, const
 		}
 		NewItemData_StructureType.Init(CurrentSet->DefaultStructureType, N);
 
-		TSharedRef<SCustomDialog> CustomDialog = SNew(SCustomDialog)
-		.Title(FText::FromString("Add New Items"))
-		.DialogContent(CreateDropConfirmDialogContent())
-		.Buttons({ SCustomDialog::FButton(FText::FromString("Confirm")),
-		    SCustomDialog::FButton(FText::FromString("Cancel"))});
 
-		TArray<UStaticMesh*> NewMeshes;
-		TArray<AActor*> NewActors;
-
-		int32 Result = CustomDialog->ShowModal();
-		if (Result == 0)
+		SGenericDialogWidget::FArguments DialogArguments;
+		DialogArguments.OnOkPressed_Lambda([=]()
 		{
 			// Treat the entire drop as a transaction (in case multiples types are being added)
 			const FScopedTransaction Transaction(NSLOCTEXT("UnrealEd", "TiledLevelMode_DragDropTypesTransaction",
@@ -1550,8 +1542,9 @@ FReply STiledPalette::HandleItemDropped(const FGeometry& DropZoneGeometry, const
 			}
 			ItemSetPtr->VersionNumber += 10;
 			UpdatePalette(true);
-			return FReply::Handled();
-		}
+		});
+		SGenericDialogWidget::OpenDialog(FText::FromString("Add New Items"), CreateDropConfirmDialogContent(), DialogArguments, true);
+
 	}
 	return FReply::Unhandled();
 }
@@ -1627,8 +1620,7 @@ FText STiledPalette::GetGapActualRatioText() const
 	}
 	TotalWeight += EdMode->GapCoefficient;
 	float MyRatio = EdMode->GapCoefficient / TotalWeight;
-	FText RatioText = UKismetTextLibrary::Conv_FloatToText(MyRatio * 100, ERoundingMode::HalfToZero, false, true, 1, 3,
-	                                                       2, 2);
+	FText RatioText = UKismetTextLibrary::Conv_DoubleToText(MyRatio * 100, ERoundingMode::HalfToZero, false, true, 1, 3, 2, 2);
 	return FText::Format(LOCTEXT("Actual Fill Ratio", "({0} %)"), RatioText);
 }
 

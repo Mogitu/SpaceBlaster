@@ -30,7 +30,7 @@ void STiledFloor::Construct(const FArguments& InArgs, int32 InPosition, class UT
 		[
 			SAssignNew( VisibilityButton, SButton )
 			.ContentPadding(FMargin(4.0f, 4.0f, 4.0f, 4.0f))
-			.ButtonStyle( FEditorStyle::Get(), "NoBorder" )
+			.ButtonStyle( FAppStyle::Get(), "NoBorder" )
 			.OnClicked( this, &STiledFloor::OnToggleVisibility )
 			.ToolTipText( LOCTEXT("FloorVisibilityButtonToolTip", "Toggle Floor Visibility") )
 			.ForegroundColor( FSlateColor::UseForeground() )
@@ -60,7 +60,7 @@ const FSlateBrush* STiledFloor::GetVisibilityBrushForLayer() const
 FSlateColor STiledFloor::GetForegroundColorForVisibilityButton() const
 {
 	static const FName InvertedForeground("InvertedForeground");
-	return FEditorStyle::GetSlateColor(InvertedForeground);
+	return FAppStyle::GetSlateColor(InvertedForeground);
 }
 
 FReply STiledFloor::OnToggleVisibility()

@@ -518,7 +518,7 @@ void ATiledLevelEditorHelper::UpdateFillPreviewGrids(TArray<FIntPoint> InFillBoa
 	int N_Box = 0;
 	FVector Offset = FVector(0.5, 0.5, InFillHeight * 0.5) * TileSize;
 	
-	for (const auto Tile : InFillBoard)
+	for (auto Tile : InFillBoard)
 	{
 		for (FVector v : BoxVertices)
 			PreviewVertices.Add(v + FVector(Tile.X, Tile.Y, InFillFloorPosition) * TileSize + Offset); 

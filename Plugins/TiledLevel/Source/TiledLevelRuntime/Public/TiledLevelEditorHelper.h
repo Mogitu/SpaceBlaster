@@ -85,7 +85,7 @@ public:
 
 	// prevent to trigger nav update?
 	// INavRelevantInterface begin
-	virtual ENavDataGatheringMode GetGeometryGatheringMode() const { return ENavDataGatheringMode::Lazy; }
+	// virtual ENavDataGatheringMode GetGeometryGatheringMode() const { return ENavDataGatheringMode::Lazy; }
 	// INavRelevantInterface end
 	
 private:

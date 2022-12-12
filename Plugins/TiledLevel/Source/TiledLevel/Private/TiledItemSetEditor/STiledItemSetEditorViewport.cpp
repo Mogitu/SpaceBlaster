@@ -105,7 +105,7 @@ void STiledItemSetEditorViewport::PopulateViewportOverlays(TSharedRef<SOverlay> 
 	.Padding(30)
 	[
 		SNew(SBorder)
-		.BorderImage(FEditorStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+		.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
 		.BorderBackgroundColor(FLinearColor(0.5f, 0.5f, 0.5f, 0.5f))
 		.Padding(FMargin(15, 10))
 		.Visibility_Lambda([=]()

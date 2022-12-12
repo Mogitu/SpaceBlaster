@@ -1215,12 +1215,12 @@ UProceduralMeshComponent* FTiledLevelUtility::ConvertTiledLevelAssetToProcMesh(U
 			{
 				// Note: Num of vertex color will not be the same as num of vertex...
 				// The num of vertex is actually 3 times more than original for smoothing purpose EX: 40 VS 12
-				TMap<FVector, FColor> VertexColorMap;
+				TMap<FVector3f, FColor> VertexColorMap;
 				MeshLOD.Key->GetVertexColorData(VertexColorMap);
 				for (FVector& v : NewSectionData.Vertex)
 				{
-					if (VertexColorMap.Contains(v))
-						 NewSectionData.VertexColor.Add(VertexColorMap[v]);
+					if (VertexColorMap.Contains(FVector3f(v)))
+						 NewSectionData.VertexColor.Add(VertexColorMap[FVector3f(v)]);
 					else
 						NewSectionData.VertexColor.Add(FColor::White);
 				}

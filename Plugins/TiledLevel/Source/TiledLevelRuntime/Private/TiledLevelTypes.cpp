@@ -10,7 +10,7 @@ UTiledLevelItem* FItemPlacement::GetItem() const
 	return nullptr;
 }
 
-#define SEARCH_REMOVE_PLACEMENT(Type)\
+/*#define SEARCH_REMOVE_PLACEMENT(Type)\
 FoundID = ##Type.IndexOfByPredicate([=](FItemPlacement P) \
 {\
 	return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform); \
@@ -19,7 +19,7 @@ if (FoundID != INDEX_NONE) \
 { \
 	##Type.RemoveAt(FoundID);\
 	return true; \
-}
+}*/
 
 void FTiledLevelGameData::Empty()
 {
@@ -33,13 +33,65 @@ void FTiledLevelGameData::Empty()
 
 bool FTiledLevelGameData::RemovePlacement(FTransform CompareTransform, FGuid ItemID)
 {
-	int FoundID;
-	SEARCH_REMOVE_PLACEMENT(BlockPlacements)
-	SEARCH_REMOVE_PLACEMENT(FloorPlacements)
-	SEARCH_REMOVE_PLACEMENT(WallPlacements)
-	SEARCH_REMOVE_PLACEMENT(EdgePlacements)
-	SEARCH_REMOVE_PLACEMENT(PillarPlacements)
-	SEARCH_REMOVE_PLACEMENT(PointPlacements)
+	int FoundID = BlockPlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		BlockPlacements.RemoveAt(FoundID);
+		return true;
+	}
+	
+	FoundID = FloorPlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		FloorPlacements.RemoveAt(FoundID);
+		return true;
+	}
+	
+	FoundID = WallPlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		WallPlacements.RemoveAt(FoundID);
+		return true;
+	}
+	
+	FoundID = EdgePlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		EdgePlacements.RemoveAt(FoundID);
+		return true;
+	}
+	
+	FoundID = PillarPlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		PillarPlacements.RemoveAt(FoundID);
+		return true;
+	}
+	
+	FoundID = PointPlacements.IndexOfByPredicate([=](FItemPlacement P)
+	{
+		return P.ItemID == ItemID && P.TileObjectTransform.Equals(CompareTransform);
+	});
+	if (FoundID != INDEX_NONE)
+	{
+		PointPlacements.RemoveAt(FoundID);
+		return true;
+	}
 	return false;
 }
 

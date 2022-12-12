@@ -133,8 +133,8 @@ TSharedRef< FSlateStyleSet > FTiledLevelStyle::Create()
 	Style->Set("TiledLevel.MergeToStaticMesh", new IMAGE_BRUSH(TEXT("Merge_128x"), Icon40x40));
 	Style->Set("TiledLevel.MergeToStaticMesh.Small", new IMAGE_BRUSH(TEXT("Merge_128x"), Icon20x20));
 
-	const FTextBlockStyle& NormalText = FEditorStyle::Get().GetWidgetStyle<FTextBlockStyle>("NormalText");
-	Style->Set("TiledLevel.FixedItemButtonText", FTextBlockStyle(FEditorStyle::Get().GetWidgetStyle<FTextBlockStyle>("NormalText"))
+	const FTextBlockStyle& NormalText = FAppStyle::Get().GetWidgetStyle<FTextBlockStyle>("NormalText");
+	Style->Set("TiledLevel.FixedItemButtonText", FTextBlockStyle(FAppStyle::Get().GetWidgetStyle<FTextBlockStyle>("NormalText"))
 		.SetFont(DEFAULT_FONT("BoldCondensed", 18))
 		.SetColorAndOpacity(FLinearColor(0.8, 0.0f, 0.0f, 0.8f))
 		.SetShadowOffset(FVector2D(1.0f, 1.0f))
@@ -142,7 +142,7 @@ TSharedRef< FSlateStyleSet > FTiledLevelStyle::Create()
 		);
 
 	const FLinearColor LayerSelectionColor = FLinearColor(0.13f, 0.70f, 1.00f);
-	const FTableRowStyle& NormalTableRowStyle = FEditorStyle::Get().GetWidgetStyle<FTableRowStyle>("TableView.Row");
+	const FTableRowStyle& NormalTableRowStyle = FAppStyle::Get().GetWidgetStyle<FTableRowStyle>("TableView.Row");
 	Style->Set("TiledLevel.LayerBrowser.TableViewRow",
 		 FTableRowStyle(NormalTableRowStyle)
 		 .SetActiveBrush(IMAGE_BRUSH("Selection", Icon8x8, LayerSelectionColor))

@@ -70,7 +70,7 @@ const FSlateBrush* STiledItemPicker::GetExpanderImage() const
 		}
 	}
 
-	return FEditorStyle::Get().GetBrush(ResourceName);
+	return FAppStyle::Get().GetBrush(ResourceName);
 }
 
 FReply STiledItemPicker::OnExpanderArrowClicked()
@@ -121,7 +121,7 @@ TSharedRef<SWidget> STiledItemPicker::MakeAddItemMenu(int Nth)
                 .HAlign(HAlign_Fill)
                 [
                     SNew(SButton)
-                    .ButtonStyle(FEditorStyle::Get(), "HoverHintOnly")
+                    .ButtonStyle(FAppStyle::Get(), "HoverHintOnly")
                     .ForegroundColor(FSlateColor::UseForeground())
                     .VAlign(VAlign_Center)
                     .HAlign(HAlign_Left)
@@ -162,7 +162,7 @@ void STiledItemPicker::RefreshContent()
     [
         SNew(SBorder)
         .Padding(6.f)
-        .BorderImage(FEditorStyle::GetBrush("DetailsView.CategoryTop"))
+        .BorderImage(FAppStyle::GetBrush("DetailsView.CategoryTop"))
         .BorderBackgroundColor(FLinearColor(.6f, .6f, .6f, 1.0f))
         [
             SNew(SHorizontalBox)

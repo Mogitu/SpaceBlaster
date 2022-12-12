@@ -196,7 +196,7 @@ TSharedRef<SWidget> FTiledLevelEdModeToolkit::BuildToolbar()
 
 	return
 	SNew(SBorder)
-	.BorderImage(FEditorStyle::GetBrush("DetailsView.CategoryTop"))
+	.BorderImage(FAppStyle::GetBrush("DetailsView.CategoryTop"))
 	.Padding(FMargin(6.f, 2.f))
 	[
 		SNew(SVerticalBox)

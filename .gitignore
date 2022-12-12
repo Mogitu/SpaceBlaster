@@ -75,3 +75,4 @@ DerivedDataCache/*
 .idea/
 Plugins/Developer/RiderLink/
 Content/thirdparty/
+.vsconfig

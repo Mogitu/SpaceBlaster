@@ -61,11 +61,11 @@ TSharedRef<SToolTip> FTiledItemViewData::CreateTooltipWidget()
 	return
 		SNew(SToolTip)
 		.TextMargin(1)
-		.BorderImage(FEditorStyle::GetBrush("ContentBrowser.TileViewTooltip.ToolTipBorder"))
+		.BorderImage(FAppStyle::GetBrush("ContentBrowser.TileViewTooltip.ToolTipBorder"))
 		[
 			SNew(SBorder)
 			.Padding(3.f)
-			.BorderImage(FEditorStyle::GetBrush("ContentBrowser.TileViewTooltip.NonContentBorder"))
+			.BorderImage(FAppStyle::GetBrush("ContentBrowser.TileViewTooltip.NonContentBorder"))
 			[
                 SNew(SVerticalBox)
                 + SVerticalBox::Slot() // name widget
@@ -74,11 +74,11 @@ TSharedRef<SToolTip> FTiledItemViewData::CreateTooltipWidget()
                     SNew(SBorder)
                     .Padding(FMargin(6.f))
                     .HAlign(HAlign_Left)
-                    .BorderImage(FEditorStyle::GetBrush("ContentBrowser.TileViewTooltip.ContentBorder"))
+                    .BorderImage(FAppStyle::GetBrush("ContentBrowser.TileViewTooltip.ContentBorder"))
                     [
                         SNew(STextBlock)
                         .Text(FText::FromName(GetDisplayName()))
-                        .Font(FEditorStyle::GetFontStyle("ContentBrowser.TileViewTooltip.NameFont"))
+                        .Font(FAppStyle::GetFontStyle("ContentBrowser.TileViewTooltip.NameFont"))
                         .HighlightText(this, &FTiledItemViewData::GetPaletteSearchText)
                     ]
                 ]
@@ -88,7 +88,7 @@ TSharedRef<SToolTip> FTiledItemViewData::CreateTooltipWidget()
                 [
                     SNew(SBorder)
                     .Padding(6.f)
-                    .BorderImage(FEditorStyle::GetBrush("ContentBrowser.TileViewTooltip.ContentBorder"))
+                    .BorderImage(FAppStyle::GetBrush("ContentBrowser.TileViewTooltip.ContentBorder"))
                     [
                          Content
                     ]
@@ -481,7 +481,7 @@ void STiledPaletteItem::Construct(const FArguments& InArgs, TSharedPtr<FTiledIte
 
 	STableRow<TSharedPtr<FTiledItemViewData>>::Construct(
 		STableRow<TSharedPtr<FTiledItemViewData>>::FArguments()
-		.Style(FEditorStyle::Get(), "ContentBrowser.AssetListView.ColumnListTableRow")
+		.Style(FAppStyle::Get(), "ContentBrowser.AssetListView.ColumnListTableRow")
 		.Padding(1.f)
 		.Content()
 		[
@@ -493,7 +493,7 @@ void STiledPaletteItem::Construct(const FArguments& InArgs, TSharedPtr<FTiledIte
 			[
 				SNew(SBorder)
 				.Padding(2.f)
-				.BorderImage(FEditorStyle::GetBrush("ContentBrowser.ThumbnailShadow"))
+				.BorderImage(FAppStyle::GetBrush("ContentBrowser.ThumbnailShadow"))
 				.ForegroundColor(FLinearColor::White)
 				.ColorAndOpacity(this, &STiledPaletteItem::GetTileColorAndOpacity)
 				[
@@ -508,7 +508,7 @@ void STiledPaletteItem::Construct(const FArguments& InArgs, TSharedPtr<FTiledIte
 			  .Padding(FMargin(3.f))
 			[
 				SNew(SBorder)
-				.BorderImage(FEditorStyle::GetBrush("ContentBrowser.ThumbnailShadow"))
+				.BorderImage(FAppStyle::GetBrush("ContentBrowser.ThumbnailShadow"))
 				.Padding(3.f)
 				[
 					MyCheckBox.ToSharedRef()
@@ -899,13 +899,13 @@ FText STiledPaletteFillDetailRow::GetActualRatioText() const
 		float Ratio = MyData->Item->FillCoefficient;
 		if (EdMode->EnableFillGap)
 			Ratio *= 1 - (EdMode->GapCoefficient / (EdMode->GapCoefficient + TotalWeight));
-		FText RatioText = UKismetTextLibrary::Conv_FloatToText(Ratio * 100, ERoundingMode::HalfToZero, false, true, 1, 3, 2, 2);
+		FText RatioText = UKismetTextLibrary::Conv_DoubleToText(Ratio * 100, ERoundingMode::HalfToZero, false, true, 1, 3, 2, 2);
 		return FText::Format(LOCTEXT("Actual Fill Ratio", "({0} %)"), RatioText);
 	}
 	if (EdMode->EnableFillGap)
 		TotalWeight += EdMode->GapCoefficient;
 	float MyRatio = MyData->Item->FillCoefficient / TotalWeight;
-	FText RatioText = UKismetTextLibrary::Conv_FloatToText(MyRatio * 100, ERoundingMode::HalfToZero, false, true, 1, 3, 2, 2);
+	FText RatioText = UKismetTextLibrary::Conv_DoubleToText(MyRatio * 100, ERoundingMode::HalfToZero, false, true, 1, 3, 2, 2);
 	return FText::Format(LOCTEXT("Actual Fill Ratio", "({0} %)"), RatioText);
 }
 
